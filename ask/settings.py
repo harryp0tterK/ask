@@ -125,7 +125,7 @@ AUTH_USER_MODEL = 'users.CustomUser'  # adds custom user auth model
 LOGIN_REDIRECT_URL = 'home'
 LOGOUT_REDIRECT_URL = 'home'
 CRISPY_TEMPLATE_PACK = 'bootstrap4'  # this is for django-crispy-forms
-EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'  # user email reset test
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'  # use smtp api
 
 try:
     from ask.local_settings import *
