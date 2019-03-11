@@ -1,0 +1,12 @@
+*.pc
+*.pyc
+*.pyo
+venv
+.idea
+.git
+.cache
+db.sqlite3
+__pycache__/
+ask/ask/local_settings.py
+test
+temp
