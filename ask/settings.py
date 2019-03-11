@@ -116,6 +116,8 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
+AUTH_USER_MODEL = 'users.CustomUser' # adds custom user auth model
+
 try:
     from ask.local_settings import *
 except ImportError:
