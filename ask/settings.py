@@ -116,7 +116,9 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-AUTH_USER_MODEL = 'users.CustomUser' # adds custom user auth model
+AUTH_USER_MODEL = 'users.CustomUser'  # adds custom user auth model
+LOGIN_REDIRECT_URL = 'home'
+LOGOUT_REDIRECT_URL = 'home'
 
 try:
     from ask.local_settings import *
