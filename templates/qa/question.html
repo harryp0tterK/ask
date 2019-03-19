@@ -1,0 +1,24 @@
+{# This is a single question view template #}
+{% extends "base.html" %}
+
+{% block title %}Question: {{ qn.title }}{% endblock %}
+
+{% block content %}
+
+    <p>{{ qn.title }}</p>
+    <p>{{ qn.text }}</p>
+    <hr>
+    <hr>
+
+    {% for answer in answers %}
+        <p>{{ answer.added_at }} || {{ answer.author}} || {{ answer }}</p>
+        <hr>
+    {% endfor %}
+
+    <a href="{% url 'home' %}">Main Page</a>
+
+    {% include 'qa/answer.html' with form=ans_form qn_id=qn.id %}
+
+{% endblock %}
+
+

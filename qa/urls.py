@@ -1,7 +1,10 @@
 from django.urls import path
+from .views import home, question, ask
 
-from .views import HomePageView
 
 urlpatterns = [
-    path('', HomePageView.as_view(), name='home'),
+    path('', home, name='home'),
+    path('question/<int:qn_id>/', question, name='question'),
+    path('popular/', home, name='popular'),
+    path('ask/', ask, name='ask')
 ]

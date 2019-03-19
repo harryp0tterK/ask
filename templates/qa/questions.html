@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block title %}Main Page: Most Recent{% endblock %}
+
+{% block content %}
+
+    <a href="{% url 'ask' %}">Do you have questions?</a>
+
+<ul>
+    {% for question in questions %}
+        <li><a href="{{ question.get_url }}" >{{ question.title }}</a>
+            <p>Date: {{ question.added_at }}</p>
+            <p>Rating: {{ question.rating }}</p>
+        </li>
+    {% endfor %}
+</ul>
+
+
+<div class="pagination" align="center">
+    <span class="step-links">
+        {% if questions.has_previous %}
+            <a href="{{ paginator.baseurl }}{{ questions.previous_page_number }}">previous</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ questions.number }} of {{ questions.paginator.num_pages }}.
+        </span>
+
+        {% if questions.has_next %}
+            <a href="{{ paginator.baseurl }}{{ questions.next_page_number }}">next</a>
+        {% endif %}
+    </span>
+</div>
+
+
+{% endblock %}

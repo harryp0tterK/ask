@@ -1,3 +1,3 @@
 from django.test import TestCase
 
-# Create your tests here.
+# Django for Beginners: Build websites with Python and Django: chapter 4. tests
