@@ -6,7 +6,7 @@
 
     {% block meta_tags %}{% endblock %}
 
-    <title>{% block title %}Hi there!{% endblock %}</title>
+    <title>{% block title %}Welcome!{% endblock %}</title>
 
     {% block stylesheets %}
     {% endblock %}
@@ -28,13 +28,14 @@
 <header></header>
 
 {% include 'navbar.html' %}
+{% include 'messages.html' %}
 
 <div id="main" role="main">
     <div class="container">
         {% block content %}
         {% endblock %}
     </div>
-
 </div>
+
 </body>
 </html>

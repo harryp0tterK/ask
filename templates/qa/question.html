@@ -5,20 +5,57 @@
 
 {% block content %}
 
-    <p>{{ qn.title }}</p>
-    <p>{{ qn.text }}</p>
-    <hr>
+<div class="row">
+<div class="col-lg-8">
+
+<h1 class="mt-4">{{ qn.title }}</h1>
+<p class="lead"> by <a href="#">{{ qn.author }}</a></p>
+
+<hr>
+<p>Posted on {{ qn.added_at }}</p>
+<hr>
+
+<p>{{ qn.text }}</p>
+
+{% if request.user.id == qn.author.id %}
+
+    <div class="text-right">
+        <div class="btn-group" role="group">
+            <button id="btnGroupDrop1" type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">Edit
+            </button>
+            <div class="dropdown-menu" aria-labelledby="btnGroupDrop1"><a class="dropdown-item" href="#">Edit</a>
+                <form action="/delete/q/{{ qn.id }}" class="select2-dropdown" method="POST">
+                    {% csrf_token %}<input type="submit" value="Delete" class="dropdown-item" data-toggle="tooltip"
+                                           data-placement="top" title="Delete the Question"/>
+                </form>
+            </div>
+        </div>
+    </div>
+
+{% endif %}
+
+
     <hr>
 
     {% for answer in answers %}
-        <p>{{ answer.added_at }} || {{ answer.author}} || {{ answer }}</p>
-        <hr>
-    {% endfor %}
 
-    <a href="{% url 'home' %}">Main Page</a>
+        <div class="media border p-3 my-3">
+            <img src="http://placehold.it/60x60" alt="" class="mr-3 mt-3 rounded-circle" style="width:60px;">
+            <div class="media-body">
+                <h4><a href="#">{{ answer.author }}</a>
+                    <small><i>answered on {{ answer.added_at }}</i></small>
+                </h4>
+                <p>{{ answer.text }}</p>
+            </div>
+        </div>
+
+    {% endfor %}
 
     {% include 'qa/answer.html' with form=ans_form qn_id=qn.id %}
 
+</div>
+</div>
 {% endblock %}
 
 
