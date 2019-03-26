@@ -1,14 +1,17 @@
-from django.http import HttpResponseRedirect
-from django.shortcuts import render, get_object_or_404
+from django.http import HttpResponseRedirect, Http404
+from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages
+from django.utils import timezone
+
 from .models import Question, Answer
 from .forms import AskForm, AnswerForm
-from django.contrib import messages
 
 
 def home(request):
     """Here we're trying to serve two urls with one view: / and popular"""
+
     new_questions = Question.objects.new()
     pref = ''
 
@@ -37,6 +40,7 @@ def home(request):
 
 def question(request, qn_id):
     """this view will return a single question + related answers by id or 404"""
+
     qn = get_object_or_404(Question, id=qn_id)
     answers = qn.answer_set.all()
     ans_form = AnswerForm()
@@ -66,6 +70,7 @@ def question(request, qn_id):
 @login_required
 def ask(request):
     """create new question"""
+
     if request.method == 'POST':
         form = AskForm(request.POST)
         if form.is_valid():
@@ -83,13 +88,40 @@ def ask(request):
 
 @login_required
 def delete(request, obj_type, o_id):
-    # this view simply deletes questions and answers
-    choose = {'q': Question, 'a': Answer}
+    """ this view simply deletes both Questions and Answers"""
+
+    choose = {'q': [Question, 'question'],
+              'a': [Answer, 'answer']}  # todo add a proper redirect to the Question if answer deleted
     try:
-        obj = get_object_or_404(choose[obj_type], id=o_id)
+        obj = get_object_or_404(choose[obj_type][0], id=o_id)
         if request.method == "POST" and obj.author == request.user:
             obj.delete()
-            m = messages.success(request, 'OK! The record was deleted')
-            return HttpResponseRedirect('/', m)
+            m = messages.success(request, f'OK! your {choose[obj_type][1]} was deleted')
+            return redirect('/', m) if obj_type == 'q' else redirect(obj.question.get_url(), m)
     except (KeyError,):
-        return HttpResponseRedirect('/')
+        return redirect('/')
+
+
+@login_required
+def edit(request, obj_type, o_id):
+    """this is edit view for both Questions and Answers"""
+
+    choose = {'q': [Question, AskForm, 'qa/askform.html', 'question'],
+              'a': [Answer, AnswerForm, 'qa/edit.html', 'answer']}
+    try:
+        obj = get_object_or_404(choose[obj_type][0], id=o_id)
+        if request.method == "POST" and obj.author == request.user:
+            form = choose[obj_type][1](request.POST, instance=obj)
+            if form.is_valid():
+                obj = form.save(commit=False)
+                obj.added_at = timezone.now()
+                m = messages.success(request, f"The {choose[obj_type][3]} was successfully edited")
+                obj.save()
+                return redirect(obj.get_url(), m) if obj_type == 'q' else redirect(obj.question.get_url(), m)
+        else:
+            form = choose[obj_type][1](instance=obj)
+
+        return render(request, choose[obj_type][2], {'form': form})
+
+    except (KeyError,):
+        raise Http404

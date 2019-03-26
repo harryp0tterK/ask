@@ -4,7 +4,8 @@
           <h5 class="card-header">Leave an Answer</h5>
           <div class="card-body">
 
-              <form class="uniForm" method="post" action="/question/{{ qn_id }}/">
+              <form class="uniForm" method="post" action="{% url 'question' qn_id=qn_id %}">
+                  {% csrf_token %}
                   {% crispy ans_form ans_form.helper %}
               </form>
 
