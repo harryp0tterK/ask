@@ -2,7 +2,7 @@ from django.forms import ModelForm
 from .models import Question, Answer
 
 from crispy_forms.helper import FormHelper
-from crispy_forms.layout import Submit, Layout, Fieldset
+from crispy_forms.layout import Submit, Layout, Field
 
 
 class AskForm(ModelForm):
@@ -26,9 +26,9 @@ class AnswerForm(ModelForm):
         self.helper.form_class = "form-control"
         self.helper.form_id = 'id-answerForm'
         self.helper.layout = Layout(
-            Fieldset('',  # the first param here is always a form label
-                     'text')
+            Field('text', style="height:15ch"),
         )
+
         self.helper.add_input(Submit('submit', 'Add Answer'))
         self.helper.form_show_labels = False  # don't want it to draw the actual model field name
 

@@ -33,6 +33,9 @@ class Answer(models.Model):
     author = models.ForeignKey(CustomUser, on_delete=models.SET(value='Deleted'))
     text = models.TextField(null=True)
 
+    active = models.BooleanField(default=True)  # added in case i'll need to deactivate some answers fsr
+    parent = models.ForeignKey('self', null=True, blank=True, related_name='replies',
+                               on_delete=models.CASCADE)  # deal with comments on answers
+
     def __str__(self):
         return self.text
-
