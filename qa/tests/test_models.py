@@ -4,11 +4,11 @@ from django.urls import reverse
 
 
 class SignupPageTests(TestCase):
-    username = 'newuser'
-    email = 'newuser@email.com'
+    username = 'ruslan'
+    email = 'ruslan@email.com'
 
     def test_signup_page_status_code(self):
-        response = self.client.get('/users/signup/')
+        response = self.client.get(reverse('signup'))
         self.assertEqual(response.status_code, 200)
 
     def test_view_url_by_name(self):

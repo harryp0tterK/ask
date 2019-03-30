@@ -15,15 +15,18 @@ def home(request, a_id=None):
 
     new_questions = Question.objects.new()
     pref = ''
+    title = 'Main Page: Most Recent'
 
     if 'popular' in request.path:
         new_questions = Question.objects.popular()
         pref = '/popular/'
+        title = 'Most Popular'
 
     if 'author' in request.path and a_id:
         # this case returns Questions by an Author chosen by an a_id
         auth = get_object_or_404(CustomUser, id=a_id)
         new_questions = auth.question_set.new()
+        title = f'Questions by {auth.username}'
 
     # let's create a paginator object
     limit = request.GET.get('limit', 10)
@@ -42,6 +45,7 @@ def home(request, a_id=None):
     return render(request, 'qa/questions.html', {
         'questions': questions,
         'paginator': paginator,
+        'title': title,
     })
 
 
