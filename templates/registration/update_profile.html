@@ -1,16 +1,15 @@
 {% extends 'base.html' %}
 
-{# plug-in crispy-forms #}
 {% load crispy_forms_tags %}
 
-{% block title %}Sign Up{% endblock title %}
+{% block title %}Edit Profile{% endblock title %}
 {% block content %}
-    <h2>Sign Up</h2>
+    <h2>Edit Your Profile</h2>
     <form method="post" enctype="multipart/form-data">
         {% csrf_token %}
         {# use crispy-forms instead of standard ones #}
         {{ form|crispy }}
-        {# use bootstrap button #}
-        <button class="btn btn-success" type="submit">Sign Up</button>
+
+        <button class="btn btn-success" type="submit">Edit</button>
     </form>
 {% endblock content %}

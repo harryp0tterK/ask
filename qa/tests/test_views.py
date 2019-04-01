@@ -1,5 +1,4 @@
 from django.test import TestCase
-from django.contrib.auth import get_user_model
 from users.models import CustomUser
 from qa.models import Question, Answer
 from django.urls import reverse
@@ -45,6 +44,21 @@ class HomeViewTests(TestCase):
         self.assertTemplateUsed(response, 'qa/questions.html')
 
 
+class SignUpLogInViewTests(TestCase):
+
+    def test_signup_page(self):
+        response = self.client.get(reverse('signup'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Sign Up')
+        self.assertTemplateUsed(response, 'signup.html')
+
+    def test_login_page(self):
+        response = self.client.get(reverse('login'))
+        self.assertEqual(response.status_code, 200)
+        self.assertContains(response, 'Log In')
+        self.assertTemplateUsed(response, 'registration/login.html')
+
+
 class QuestionViewTest(TestCase):
 
     def setUp(self):
@@ -82,6 +96,6 @@ class QuestionViewTest(TestCase):
     def test_author_link_exists(self):
         self.assertContains(self.response, f'author/{self.user.id}/')
 
-    def test_answer(self):
+    def test_answer_exists_and_template(self):
         self.assertContains(self.response, self.answer.text)
         self.assertTemplateUsed(self.response, 'qa/answer.html')

@@ -10,6 +10,14 @@ class QuestionManager(models.Manager):
         return self.order_by('-rating')
 
 
+# class Category(models.Model):
+#     name = models.CharField(max_length=255)
+#     description = models.CharField(max_length=255, null=True, blank=True)
+#
+#     def __str__(self):
+#         return self.name
+
+
 class Question(models.Model):
     title = models.CharField(blank=False, null=False, max_length=255)
     text = models.TextField()
@@ -18,13 +26,16 @@ class Question(models.Model):
     author = models.ForeignKey(CustomUser, on_delete=models.SET(value='Deleted'))
     likes = models.ManyToManyField(CustomUser, related_name='get_likes', default=0)
 
+    # category = models.ManyToManyField(Category)  # fixme here is the thing to start w/
+    # has_answer = models.BooleanField(default=False)
+
     objects = QuestionManager()
 
     def __str__(self):
         return self.title
 
     def get_url(self):
-        return "/question/{}".format(self.id)
+        return f"/question/{self.id}"
 
 
 class Answer(models.Model):
@@ -37,5 +48,9 @@ class Answer(models.Model):
     parent = models.ForeignKey('self', null=True, blank=True, related_name='replies',
                                on_delete=models.CASCADE)  # deal with comments on answers
 
+    # is_answer = models.BooleanField(Question, default=False, null=True, blank=True)
+    # upvotes = models.IntegerField()
+
     def __str__(self):
         return self.text
+
