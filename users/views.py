@@ -29,3 +29,6 @@ class UpdateProfileView(LoginRequiredMixin, UserPassesTestMixin, SuccessMessageM
 
 
 
+
+
+
