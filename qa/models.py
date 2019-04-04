@@ -1,4 +1,5 @@
 from django.db import models
+from django.utils.text import slugify
 from users.models import CustomUser
 
 
@@ -10,12 +11,35 @@ class QuestionManager(models.Manager):
         return self.order_by('-rating')
 
 
-# class Category(models.Model):
-#     name = models.CharField(max_length=255)
-#     description = models.CharField(max_length=255, null=True, blank=True)
-#
-#     def __str__(self):
-#         return self.name
+class QuestionCategoryManager(models.Manager):
+    def get_by_natural_key(self, slug):
+        return self.get(slug=slug)
+
+
+class Category(models.Model):
+    name = models.CharField(max_length=255)
+    slug = models.SlugField(unique=True)
+    description = models.CharField(max_length=255, null=True, blank=True)
+
+    objects = QuestionCategoryManager()
+
+    def __str__(self):
+        return self.name
+
+    def natural_key(self):
+        return self.slug
+
+    def get_url(self):
+        return f"/category/{self.id}"
+
+    def get_number(self):
+        # this method returns a related questions number
+        c = Category.objects.annotate(num_questions=models.Count('question')).filter(id=self.id)
+        return c[0].num_questions
+
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name) + str(self.id)
+        super(Category, self).save(*args, **kwargs)
 
 
 class Question(models.Model):
@@ -25,8 +49,8 @@ class Question(models.Model):
     rating = models.IntegerField(default=0)
     author = models.ForeignKey(CustomUser, on_delete=models.SET(value='Deleted'))
     likes = models.ManyToManyField(CustomUser, related_name='get_likes', default=0)
+    category = models.ManyToManyField(Category, blank=True)
 
-    # category = models.ManyToManyField(Category)  # fixme here is the thing to start w/
     # has_answer = models.BooleanField(default=False)
 
     objects = QuestionManager()

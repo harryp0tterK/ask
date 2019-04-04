@@ -1,5 +1,5 @@
-from django.forms import ModelForm
-from .models import Question, Answer
+from django.forms import ModelForm, ModelMultipleChoiceField, Form
+from .models import Question, Answer, Category
 
 from crispy_forms.helper import FormHelper
 from crispy_forms.layout import Submit, Layout, Field
@@ -11,7 +11,7 @@ class AskForm(ModelForm):
     class Meta:
         """let's get field names from the model"""
         model = Question
-        fields = ['title', 'text', 'author']
+        fields = ['title', 'text', 'author', 'category']
         exclude = ('author',)  # need to exclude this to pre-save form
 
 
@@ -19,7 +19,7 @@ class AnswerForm(ModelForm):
     """this is an answer form"""
 
     def __init__(self, *args, **kwargs):
-        """here i am using the FormHelper class and its attributes to make the form look nicer"""
+        """here I am using the FormHelper class and its attributes to make the form look nicer"""
 
         super(AnswerForm, self).__init__(*args, **kwargs)
         self.helper = FormHelper(self)
@@ -36,3 +36,10 @@ class AnswerForm(ModelForm):
         model = Answer
         fields = ['text']
         exclude = ('author', 'question')
+
+
+class CategoryForm(ModelForm):
+
+    class Meta:
+        model = Category
+        fields = ['name', 'description']

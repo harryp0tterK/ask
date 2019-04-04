@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Answer, Question
+from .models import Answer, Question, Category
 
 
 class QuestionAdmin(admin.ModelAdmin):
@@ -17,3 +17,11 @@ class AnswerAdmin(admin.ModelAdmin):
 
 
 admin.site.register(Answer, AnswerAdmin)
+
+
+class CategoryAdmin(admin.ModelAdmin):
+    list_display = ('id', 'name', 'description', 'slug')
+    prepopulated_fields = {"slug": ("name",)}
+
+
+admin.site.register(Category, CategoryAdmin)

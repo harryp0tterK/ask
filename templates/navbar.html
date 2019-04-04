@@ -7,9 +7,16 @@
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <form class="form-inline mr-auto" action='{% url 'ask' %}'>
-        <input class="btn btn-outline-success" type="submit" value="Create Question +"/>
-    </form>
+
+   {% if title != 'Categories' %}
+       <form class="form-inline mr-auto" action='{% url 'ask' %}'>
+           <input class="btn btn-outline-success" type="submit" value="Create Question +"/>
+       </form>
+   {% else %}
+       <form class="form-inline mr-auto" action='{% url 'create_category' %}'>
+           <input class="btn btn-outline-success" type="submit" value="Create Category +"/>
+       </form>
+   {% endif %}
 
     <div class="collapse navbar-collapse" id="navbarResponsive">
         {% if user.is_authenticated %}

@@ -4,43 +4,57 @@
 
 {% block content %}
 
-
 <div class="row">
     <div class="col-lg-8">
 
-{% for question in questions %}
+        {% for question in questions %}
 
-    <div class="card my-4">
-        <div class="card-header">created by {{ question.author }}
+        <div class="card my-4">
+
+            <div class="card-header">created by <strong>
+                    <a href="{% url 'author' a_id=question.author_id %}">{{ question.author }}</a>
+                </strong> on {{ question.added_at }}
+            </div>
+
+            <div class="card-body">
+                <strong class="card-title">{{ question.title }}</strong>
+                <p class="card-text">{{ question.text|safe|truncatewords:"20"|linebreaks }}</p>
+                <a href="{{ question.get_url }}" class="card-link">Read more</a>
+            </div>
+
+            {% if question.category.all|length > 0 %}
+            <div class="card-footer text-muted">
+                {% for c in question.category.all %}
+                <a href="{{ c.get_url }}" class="badge bg-primary text-white">{{ c.name }}</a>
+                {% endfor %}
+            </div>
+            {% endif %}
+
         </div>
-        <div class="card-body">
-            <strong class="card-title">{{ question.title }}</strong>
-            <p class="card-text">{{ question.text|safe|truncatewords:"20"|linebreaks }}</p>
-            <a href="{{ question.get_url }}" class="card-link">Read more</a>
-        </div>
-        <div class="card-footer text-muted">
-            <small class="text-muted">{{ question.added_at }}</small>
-        </div>
+
+        {% endfor %}
+
     </div>
 
-    {% endfor %}
-
-    </div>
-
-{% include 'right_bar.html' %}
+    {% include 'right_bar.html' %}
 
 </div>
 
 <nav aria-label="Page navigation" class="col-lg-6 offset-lg-3 py-5 d-flex">
     <ul class="pagination mx-auto">
         {% if questions.has_previous %}
-            <li class="page-item"><a class="page-link" href="{{ paginator.baseurl }}{{ questions.previous_page_number }}">Previous</a></li>
-            <li class="page-item"><a class="page-link" href="{{ paginator.baseurl }}{{ questions.previous_page_number }}">{{ questions.previous_page_number }}</a></li>
+        <li class="page-item"><a class="page-link"
+                href="{{ paginator.baseurl }}{{ questions.previous_page_number }}">Previous</a></li>
+        <li class="page-item"><a class="page-link"
+                href="{{ paginator.baseurl }}{{ questions.previous_page_number }}">{{ questions.previous_page_number }}</a>
+        </li>
         {% endif %}
         <li class="page-item active"><a class="page-link" href="#">{{ questions.number }}</a></li>
         {% if questions.has_next %}
-            <li class="page-item"><a class="page-link" href="{{ paginator.baseurl }}{{ questions.next_page_number }}">{{ questions.next_page_number }}</a></li>
-            <li class="page-item"><a class="page-link" href="{{ paginator.baseurl }}{{ questions.next_page_number }}">Next</a></li>
+        <li class="page-item"><a class="page-link"
+                href="{{ paginator.baseurl }}{{ questions.next_page_number }}">{{ questions.next_page_number }}</a></li>
+        <li class="page-item"><a class="page-link"
+                href="{{ paginator.baseurl }}{{ questions.next_page_number }}">Next</a></li>
         {% endif %}
     </ul>
 </nav>

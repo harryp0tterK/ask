@@ -1,6 +1,6 @@
 {# This is a single question view template #}
-
 {% extends "base.html" %}
+
 {% load crispy_forms_tags %}
 
 {% block title %}Question: {{ qn.title|truncatechars:30 }}{% endblock %}
@@ -36,7 +36,6 @@
                                 {% csrf_token %}<input type="submit" value="Delete" class="dropdown-item"
                                     data-toggle="tooltip" data-placement="top" title="Delete the Question" />
                             </form>
-
                         </div>
                     </div>
                 </div>
@@ -45,7 +44,15 @@
                 {# controls: question end #}
             </div>
         </div>
-        <div class="media border-bottom p-3">{{ qn.text }}</div>
+        <div class="media border-bottom p-3">
+           {{ qn.text }}
+        </div>
+
+       <div class="d-inline mt-2">
+            {% for c in qn.category.all %}
+                       <a href="{{ c.get_url }}" class="badge bg-primary text-white">{{ c.name }}</a>
+            {% endfor %}
+        </div>
 
         <!-- Answers -->
         {% for answer in answers %}
@@ -54,9 +61,7 @@
             <div class="media-body">
                 <div class="row">
                     <div class="col-sm-10">
-{#                        <h4><a href="#">{{ answer.author }}</a> </h4>#}
                             <p><strong> answered on {{ answer.added_at }} by {{ answer.author }}</strong></p>
-
                     </div>
 
                     {# controls: edit/delete answer #}
@@ -91,6 +96,7 @@
         {% include 'qa/answer.html' with form=ans_form qn_id=qn.id %}
 
     </div>
+{% include 'right_bar.html' %}
 </div>
 
 {% endblock %}
