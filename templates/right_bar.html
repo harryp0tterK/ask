@@ -51,9 +51,14 @@
 
         <!-- Side Widget -->
         <div class="card my-4">
-          <h5 class="card-header">News</h5>
+        <h5 class="card-header"><a href="{% url 'popular' %}">Popular Questions</a></h5>
           <div class="card-body">
-            You can put anything you want inside of these side widgets. They are easy to use, and feature the new Bootstrap 4 card containers!
+               <ul class="list-group list-group-flush">
+                   {% for t in top %}
+                       <li class="list-group-item d-flex justify-content-between align-items-center">
+                       <a href="{% url 'question' qn_id=t.id %}">{{ t.title }}</a></li>
+                   {% endfor %}
+               </ul>
           </div>
         </div>
 

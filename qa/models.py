@@ -1,4 +1,5 @@
 from django.db import models
+from django.urls import reverse
 from django.utils.text import slugify
 from users.models import CustomUser
 
@@ -7,8 +8,8 @@ class QuestionManager(models.Manager):
     def new(self):
         return self.order_by('-added_at')
 
-    def popular(self):
-        return self.order_by('-rating')
+    def popular(self, limit=None):
+        return self.order_by('-likes')[:limit] if limit else self.order_by('-likes')
 
 
 class QuestionCategoryManager(models.Manager):
@@ -46,7 +47,7 @@ class Question(models.Model):
     title = models.CharField(blank=False, null=False, max_length=255)
     text = models.TextField()
     added_at = models.DateField(auto_now=True)
-    rating = models.IntegerField(default=0)
+    rating = models.IntegerField(default=0)  # todo remove this later
     author = models.ForeignKey(CustomUser, on_delete=models.SET(value='Deleted'))
     likes = models.ManyToManyField(CustomUser, related_name='get_likes', default=0)
     category = models.ManyToManyField(Category, blank=True)
@@ -59,7 +60,10 @@ class Question(models.Model):
         return self.title
 
     def get_url(self):
-        return f"/question/{self.id}"
+        return reverse('question', kwargs={'qn_id': self.id})
+
+    def get_like_toggle(self):
+        return reverse('like', kwargs={'qn_id': self.id})
 
 
 class Answer(models.Model):

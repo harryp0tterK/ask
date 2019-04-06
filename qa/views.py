@@ -4,6 +4,7 @@ from django.core.paginator import Paginator, EmptyPage
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
 from django.utils import timezone
+from django.views.generic import RedirectView
 
 from .models import Question, Answer, Category
 from users.models import CustomUser
@@ -14,6 +15,7 @@ def home(request, a_id=None):
     """Here we're trying to serve two urls with one view: / and popular"""
 
     new_questions = Question.objects.new()
+    top = Question.objects.popular(5)
     pref = ''
     title = 'Main Page: Most Recent'
 
@@ -52,6 +54,7 @@ def home(request, a_id=None):
         'questions': questions,
         'paginator': paginator,
         'title': title,
+        'top': top,
     })
 
 
@@ -59,6 +62,7 @@ def question(request, qn_id):
     """this view will return a single question + related answers by id and CREATE answers"""
 
     qn = get_object_or_404(Question, id=qn_id)
+    top = Question.objects.popular(5)
     # list of active parent answers
     answers = qn.answer_set.filter(active=True, parent__isnull=True)
     ans_form = AnswerForm()
@@ -101,7 +105,22 @@ def question(request, qn_id):
             m = messages.warning(request, 'Sorry! You have to login first!')
             return redirect(f'/users/login?next={qn.get_url()}', m)
 
-    return render(request, 'qa/question.html', {'qn': qn, 'answers': answers, 'ans_form': ans_form})
+    return render(request, 'qa/question.html', {'qn': qn, 'answers': answers,
+                                                'ans_form': ans_form, 'top': top,})
+
+
+class QuestionLikeRedirect(RedirectView):
+    def get_redirect_url(self, *args, **kwargs):
+        qn_id = self.kwargs.get('qn_id')
+        qn = get_object_or_404(Question, id=qn_id)
+        url_ = qn.get_url()
+        user = self.request.user
+        if user.is_authenticated:
+            if user in qn.likes.all():
+                qn.likes.remove(user)
+            else:
+                qn.likes.add(user)
+        return url_
 
 
 @login_required
@@ -202,6 +221,8 @@ def create_category(request):
 def serve_categories(request):
 
     cat = Category.objects.all().order_by('id')
+    top = Question.objects.popular(5)
+
     title = 'Categories'
     limit = request.GET.get('limit', 10)
     page = int(request.GET.get('page', 1))
@@ -211,4 +232,5 @@ def serve_categories(request):
 
     return render(request, 'qa/categories.html', {'categories': categories,
                                                   'paginator': paginator,
-                                                  'title': title})
+                                                  'title': title,
+                                                  'top': top,})

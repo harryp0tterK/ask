@@ -11,9 +11,17 @@
 
         <div class="card my-4">
 
-            <div class="card-header">created by <strong>
-                    <a href="{% url 'author' a_id=question.author_id %}">{{ question.author }}</a>
-                </strong> on {{ question.added_at }}
+            <div class="card-header">
+                <div class="row">
+                    <div class="col-lg-10">
+                        created by<strong> <a
+                            href="{% url 'author' a_id=question.author_id %}">{{ question.author }}</a>
+                    </strong> on {{ question.added_at }}
+                    </div>
+                    <div class="col-lg-2">
+                        <a href="">Likes <span class="badge badge-info">{{ question.likes.count }}</span></a>
+                    </div>
+                </div>
             </div>
 
             <div class="card-body">
@@ -25,7 +33,7 @@
             {% if question.category.all|length > 0 %}
             <div class="card-footer text-muted">
                 {% for c in question.category.all %}
-                <a href="{{ c.get_url }}" class="badge bg-primary text-white">{{ c.name }}</a>
+                <a href="{{ c.get_url }}" class="badge bg-info text-white">{{ c.name }}</a>
                 {% endfor %}
             </div>
             {% endif %}

@@ -13,11 +13,17 @@
         <!-- Question -->
         <h1 class="mt-4">{{ qn.title }}</h1>
         <div class="row">
-            <div class="col-lg-10">
-
+            <div class="col-lg-9">
                 <p class="lead"> Posted by <a href="{% url 'author' a_id=qn.author_id %}"
                                               data-toggle="tooltip" title="Grab all Questions by {{ qn.author }}">
-                    {{ qn.author }}</a> on {{ qn.added_at }}</p>
+                    {{ qn.author }}</a> on {{ qn.added_at }}&nbsp;&nbsp;
+                </p>
+            </div>
+
+            <div class="clol-lg-1">
+                <a href="{{ qn.get_like_toggle }}" class="btn btn-primary">
+                    Likes <span class="badge badge-light">{{ qn.likes.count }}</span>
+                </a>
             </div>
 
             <div class="col-lg-1">
@@ -50,7 +56,7 @@
 
        <div class="d-inline mt-2">
             {% for c in qn.category.all %}
-                       <a href="{{ c.get_url }}" class="badge bg-primary text-white">{{ c.name }}</a>
+                       <a href="{{ c.get_url }}" class="badge bg-info text-white">{{ c.name }}</a>
             {% endfor %}
         </div>
 
