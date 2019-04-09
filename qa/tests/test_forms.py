@@ -22,7 +22,7 @@ class CreateQuestionTest(TestCase):
 
         self.data = {'text': 'Nice body content, Lorem Ipsum', 'title': 'A good title'}
 
-    def test_try_to_question_no_login(self):
+    def test_try_to_ask_no_login(self):
         response = self.client.post(reverse('ask'), self.data)
         self.assertRedirects(response, '/accounts/login/?next=/ask/')
 
