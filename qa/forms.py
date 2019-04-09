@@ -1,4 +1,4 @@
-from django.forms import ModelForm, ModelMultipleChoiceField, Form
+from django.forms import ModelForm
 from .models import Question, Answer, Category
 
 from crispy_forms.helper import FormHelper

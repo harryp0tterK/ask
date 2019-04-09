@@ -1,4 +1,4 @@
-from django.test import TestCase, Client
+from django.test import TestCase
 from users.models import CustomUser
 from qa.models import Question, Answer, Category
 from django.urls import reverse

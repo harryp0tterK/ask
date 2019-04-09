@@ -1,6 +1,5 @@
 from users.models import CustomUser
 from django.test import TestCase
-from django.urls import reverse
 
 
 class SignupUserTests(TestCase):

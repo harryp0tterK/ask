@@ -31,12 +31,12 @@ class CreateQuestionTest(TestCase):
         self.assertContains(response, 'login')
 
     def test_login_and_ask_question(self):
-        self.client.login(username='ruslan', password='secret_password')
+        self.client.login(username=self.user.username, password='secret_password')
         response = self.client.post(reverse('ask'), self.data, follow=True)
         self.assertContains(response, self.data['text'])
 
     def test_login_and_answer(self):
-        self.client.login(username='ruslan', password='secret_password')
+        self.client.login(username=self.user.username, password='secret_password')
         response = self.client.post(self.question.get_url(), self.data, follow=True)
         self.assertContains(response, self.data['text'])
 

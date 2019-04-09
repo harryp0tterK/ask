@@ -74,10 +74,8 @@ def question(request, qn_id):
 
             if ans_form.is_valid():
 
-                '''
-                here is a code for replies on answers (answers have 'parents'). It works (mostly),\
-                but I am not so sure if this feature is still relevant: think it over later
-                '''
+                # here is a code for replies on answers (answers have 'parents'). It works (mostly),\
+                # but I am not so sure if this feature is still relevant: think it over later
 
                 try:  # get parent comment id from hidden input
                     parent_id = request.POST.get('parent_id')
