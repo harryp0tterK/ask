@@ -55,6 +55,7 @@ def home(request, a_id=None):
         'paginator': paginator,
         'title': title,
         'top': top,
+        'top_categories': Category.objects.popular_categories(),
     })
 
 
@@ -104,7 +105,8 @@ def question(request, qn_id):
             return redirect(f'/users/login?next={qn.get_url()}', m)
 
     return render(request, 'qa/question.html', {'qn': qn, 'answers': answers,
-                                                'ans_form': ans_form, 'top': top,})
+                                                'ans_form': ans_form, 'top': top,
+                                                'top_categories': Category.objects.popular_categories(),})
 
 
 class QuestionLikeRedirect(RedirectView):
@@ -231,4 +233,5 @@ def serve_categories(request):
     return render(request, 'qa/categories.html', {'categories': categories,
                                                   'paginator': paginator,
                                                   'title': title,
-                                                  'top': top,})
+                                                  'top': top,
+                                                  'top_categories': Category.objects.popular_categories(),})

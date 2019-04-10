@@ -16,6 +16,13 @@ class QuestionCategoryManager(models.Manager):
     def get_by_natural_key(self, slug):
         return self.get(slug=slug)
 
+    @staticmethod
+    def popular_categories():
+        # this method will return top 5 categories
+        c = Category.objects.annotate(num_questions=models.Count('question'))
+        cat = c.order_by('-num_questions')[:5]
+        return cat
+
 
 class Category(models.Model):
     name = models.CharField(max_length=255)
@@ -34,7 +41,7 @@ class Category(models.Model):
         return f"/category/{self.id}"
 
     def get_number(self):
-        # this method returns a related questions number
+        # this method returns a number of related questions
         c = Category.objects.annotate(num_questions=models.Count('question')).filter(id=self.id)
         return c[0].num_questions
 
