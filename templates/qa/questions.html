@@ -9,7 +9,7 @@
 
         {% for question in questions %}
 
-        <div class="card my-4">
+        <div class="card my-4 {% if question.has_answer %}border-success{% endif %}">
 
             <div class="card-header">
                 <div class="row">
@@ -17,6 +17,8 @@
                         created by<strong> <a
                             href="{% url 'author' a_id=question.author_id %}">{{ question.author }}</a>
                     </strong> on {{ question.added_at }}
+                        {% if question.has_answer %}&nbsp;<span
+                                class="badge badge-secondary">Settled!</span>{% endif %}
                     </div>
                     <div class="col-lg-2">
                         <a href="">Likes <span class="badge badge-info">{{ question.likes.count }}</span></a>

@@ -54,12 +54,11 @@ class Question(models.Model):
     title = models.CharField(blank=False, null=False, max_length=255)
     text = models.TextField()
     added_at = models.DateField(auto_now=True)
+    # edited =
     rating = models.IntegerField(default=0)  # todo remove this later
     author = models.ForeignKey(CustomUser, on_delete=models.SET(value='Deleted'))
     likes = models.ManyToManyField(CustomUser, related_name='get_likes', default=0)
     category = models.ManyToManyField(Category, blank=True)
-
-    # has_answer = models.BooleanField(default=False)
 
     objects = QuestionManager()
 
@@ -72,6 +71,10 @@ class Question(models.Model):
     def get_like_toggle(self):
         return reverse('like', kwargs={'qn_id': self.id})
 
+    def has_answer(self):
+        res = len(self.answer_set.filter(best_answer=True))
+        return True if res > 0 else False
+
 
 class Answer(models.Model):
     added_at = models.DateField(auto_now=True)
@@ -81,10 +84,9 @@ class Answer(models.Model):
 
     active = models.BooleanField(default=True)  # added in case i'll need to deactivate some answers fsr
     parent = models.ForeignKey('self', null=True, blank=True, related_name='replies',
-                               on_delete=models.CASCADE)  # deal with comments on answers
+                               on_delete=models.CASCADE)  # deals with comments on answers
 
-    # is_answer = models.BooleanField(Question, default=False, null=True, blank=True)
-    # upvotes = models.IntegerField()
+    best_answer = models.BooleanField(default=False, null=True, blank=True)
 
     def __str__(self):
         return self.text

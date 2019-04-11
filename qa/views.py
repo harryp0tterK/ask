@@ -106,7 +106,7 @@ def question(request, qn_id):
 
     return render(request, 'qa/question.html', {'qn': qn, 'answers': answers,
                                                 'ans_form': ans_form, 'top': top,
-                                                'top_categories': Category.objects.popular_categories(),})
+                                                'top_categories': Category.objects.popular_categories(), })
 
 
 class QuestionLikeRedirect(RedirectView):
@@ -120,6 +120,24 @@ class QuestionLikeRedirect(RedirectView):
                 qn.likes.remove(user)
             else:
                 qn.likes.add(user)
+        return url_
+
+
+class QAnsweredRedirect(RedirectView):
+    # here a question author can assign a
+    # 'best answer' badge (and cancel it)
+
+    def get_redirect_url(self, *args, **kwargs):
+        a_id = self.kwargs.get('a_id')
+        ans = get_object_or_404(Answer, id=a_id)
+        url_ = ans.question.get_url()
+        user = self.request.user
+        if user.is_authenticated and user == ans.question.author:
+            if ans.best_answer:
+                ans.best_answer = False
+            else:
+                ans.best_answer = True
+            ans.save()
         return url_
 
 
@@ -154,7 +172,7 @@ def delete(request, obj_type, o_id):
 
     choose = {'q': [Question, 'question', '/'],
               'a': [Answer, 'answer', ''],
-              'c': [Category, 'category', '/categories'],}
+              'c': [Category, 'category', '/categories'], }
     try:
         obj = get_object_or_404(choose[obj_type][0], id=o_id)
         permission = True if obj_type == 'c' else obj.author == request.user
@@ -205,7 +223,6 @@ def edit(request, obj_type, o_id):
 
 @login_required
 def create_category(request):
-
     if request.method == 'POST':
         form = CategoryForm(request.POST)
         if form.is_valid():
@@ -219,7 +236,6 @@ def create_category(request):
 
 
 def serve_categories(request):
-
     cat = Category.objects.all().order_by('id')
     top = Question.objects.popular(5)
 
@@ -234,4 +250,4 @@ def serve_categories(request):
                                                   'paginator': paginator,
                                                   'title': title,
                                                   'top': top,
-                                                  'top_categories': Category.objects.popular_categories(),})
+                                                  'top_categories': Category.objects.popular_categories(), })
