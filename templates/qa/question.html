@@ -18,7 +18,7 @@
                                               data-toggle="tooltip" title="Grab all Questions by {{ qn.author }}">
                     {{ qn.author }}</a> on {{ qn.added_at }}&nbsp;
                                     <a href="{{ qn.get_like_toggle }}" class="btn btn-primary">
-                    Likes <span class="badge badge-light">{{ qn.likes.count }}</span>
+                    Likes <span class="badge badge-light">{{ qn.rating }}</span>
                 </a>
                     <!--controls: question-->
                 {% if request.user.id == qn.author.id %}

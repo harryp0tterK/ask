@@ -1,0 +1,122 @@
+[
+  {
+    "model": "users.CustomUser",
+    "pk": 3,
+    "fields": {
+      "username": "Robert",
+      "first_name": "Robert",
+      "last_name": "Webb",
+      "age": 33,
+      "email": "RobertWebb@rhyta.com",
+      "avatar": "/initial_avatar/01.jpeg"
+    }
+  },
+  {
+    "model": "users.CustomUser",
+    "pk": 4,
+    "fields": {
+      "username": "Swel1990",
+      "first_name": "Callum",
+      "last_name": "Nelson",
+      "age": "29",
+      "email": "CallumNelson@teleworm.us",
+      "avatar": "/initial_avatar/02.jpeg"
+    }
+  },
+   {
+    "model": "users.CustomUser",
+    "pk": 5,
+    "fields": {
+      "username": "Lablen",
+      "first_name": "Taylor",
+      "last_name": "Goddard",
+      "age": "44",
+      "email": "TaylorGoddard@rhyta.com",
+      "avatar": "/initial_avatar/03.jpeg"
+    }
+  },
+     {
+    "model": "users.CustomUser",
+    "pk": 6,
+    "fields": {
+      "username": "Achisfain",
+      "first_name": "Evie",
+      "last_name": "Parry",
+      "age": "44",
+      "email": "EvieParry@jourrapide.com ",
+      "avatar": "/initial_avatar/04.jpeg"
+    }
+  },
+     {
+    "model": "users.CustomUser",
+    "pk": 7,
+    "fields": {
+      "username": "Sofia1983",
+      "first_name": "Sofia",
+      "last_name": "Blackburn",
+      "age": "35",
+      "email": "SofiaBlackburn@armyspy.com",
+      "avatar": "/initial_avatar/05.jpeg"
+    }
+  },
+     {
+    "model": "users.CustomUser",
+    "pk": 8,
+    "fields": {
+      "username": "Wilisting",
+      "first_name": "Kieran",
+      "last_name": "Higgins",
+      "age": "33",
+      "email": "KieranHiggins@armyspy.com",
+      "avatar": "/initial_avatar/06.jpeg"
+    }
+  },
+     {
+    "model": "users.CustomUser",
+    "pk": 9,
+    "fields": {
+      "username": "HollyTowled",
+      "first_name": "Holly",
+      "last_name": "Hayward",
+      "age": "30",
+      "email": "HollyHayward@jourrapide.com",
+      "avatar": "/initial_avatar/07.jpeg"
+    }
+  },
+     {
+    "model": "users.CustomUser",
+    "pk": 10,
+    "fields": {
+      "username": "Thount",
+      "first_name": "Jonathan",
+      "last_name": "Howe",
+      "age": "29",
+      "email": "JonathanHowe@jourrapide.com",
+      "avatar": "/initial_avatar/08.jpeg"
+    }
+  },
+     {
+    "model": "users.CustomUser",
+    "pk": 11,
+    "fields": {
+      "username": "Bellyn",
+      "first_name": "Nicole",
+      "last_name": "Gibbs",
+      "age": "26",
+      "email": "NicoleGibbs@dayrep.com",
+      "avatar": "/initial_avatar/09.jpeg"
+    }
+  },
+     {
+    "model": "users.CustomUser",
+    "pk": 12,
+    "fields": {
+      "username": "Maystionite",
+      "first_name": "Kayleigh",
+      "last_name": "Vaughan",
+      "age": "25",
+      "email": "KayleighVaughan@teleworm.us",
+      "avatar": "/initial_avatar/10.jpeg"
+    }
+  }
+]

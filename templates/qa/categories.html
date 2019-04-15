@@ -48,24 +48,19 @@
 <nav aria-label="Page navigation" class="col-lg-6 offset-lg-3 py-5 d-flex">
     <ul class="pagination mx-auto">
         {% if categories.has_previous %}
-        <li class="page-item"><a class="page-link"
-                href="{{ paginator.baseurl }}{{ categories.previous_page_number }}">Previous</a>
+        <li class="page-item"><a class="page-link" href="{{ paginator.baseurl }}{{ categories.previous_page_number }}">Previous</a>
         </li>
-        <li class="page-item"><a class="page-link"
-                href="
-                        {{ paginator.baseurl }}{{ categories.previous_page_number }}">{{ categories.previous_page_number }}</a>
+        <li class="page-item"><a class="page-link" href="{{ paginator.baseurl }}{{ categories.previous_page_number }}">{{ categories.previous_page_number }}</a>
         </li>
         {% endif %}
         <li class="page-item active"><a class="page-link" href="#">{{ categories.number }}</a></li>
         {% if categories.has_next %}
-        <li class="page-item"><a class="page-link" href="
-                        {{ paginator.baseurl }}{{ categories.next_page_number }}">{{ categories.next_page_number }}</a>
+        <li class="page-item"><a class="page-link" href="{{ paginator.baseurl }}{{ categories.next_page_number }}">{{ categories.next_page_number }}</a>
         </li>
-        <li class="page-item"><a class="page-link"
-                href="{{ paginator.baseurl }}{{ categories.next_page_number }}">Next</a></li>
-        {% endif %}
+        <li class="page-item"><a class="page-link" href="{{ paginator.baseurl }}{{ categories.next_page_number }}">Next</a></li>
     </ul>
 </nav>
+{% endif %}
 {% endif %}
 
 

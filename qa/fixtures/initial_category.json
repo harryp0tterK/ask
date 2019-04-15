@@ -1,0 +1,47 @@
+[
+    {
+      "model": "qa.Category",
+      "pk": 1,
+      "fields": {
+        "name": "Americas",
+        "slug": "americas",
+        "description": "History: North and South America"
+      }
+    },
+      {
+      "model": "qa.Category",
+      "pk": 2,
+      "fields": {
+        "name": "Archaeology",
+        "slug": "archaeology",
+        "description": "Archaeology and Prehistory"
+      }
+    },
+      {
+      "model": "qa.Category",
+      "pk": 3,
+      "fields": {
+        "name": "Rome",
+        "slug": "rome",
+        "description": "The History of Rome"
+      }
+    },
+      {
+      "model": "qa.Category",
+      "pk": 4,
+      "fields": {
+        "name": "Military",
+        "slug": "military",
+        "description": "Military History"
+      }
+    },
+      {
+      "model": "qa.Category",
+      "pk": 5,
+      "fields": {
+        "name": "Europe",
+        "slug": "europe",
+        "description": "The History of Ancient Europe"
+      }
+    }
+]

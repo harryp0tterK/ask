@@ -11,3 +11,4 @@ ask/ask/local_settings.py
 temp
 local_settings.py
 media/avatars/
+re_start.sh

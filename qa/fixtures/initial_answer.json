@@ -1,0 +1,254 @@
+[
+  {
+    "model": "qa.Answer",
+    "pk": 1,
+    "fields": {
+      "added_at": "2018-01-01",
+      "question": 1,
+      "author": 4,
+      "text": "The commonly used \"currencies\" were cacao beans and cotten cloaks with the exchange between the two items commonly cited as 65 beans to a cloak though this would depend on the quality of the cloak.",
+      "active": true,
+      "best_answer": true
+    }
+  },
+  {
+    "model": "qa.Answer",
+    "pk": 2,
+    "fields": {
+      "added_at": "2018-01-03",
+      "question": 1,
+      "author": 5,
+      "text": "Land is wealth, right?",
+      "active": true,
+      "best_answer": false
+    }
+  },
+    {
+    "model": "qa.Answer",
+    "pk": 3,
+    "fields": {
+      "added_at": "2018-06-29",
+      "question": 2,
+      "author": 7,
+      "text": "I would argue that Indiana Jones is an archaeologist in the same way that Hal Jordan is an Air Force pilot or Peter Parker is a news photographer.",
+      "active": true,
+      "best_answer": true
+    }
+  },
+  {
+    "model": "qa.Answer",
+    "pk": 4,
+    "fields": {
+      "added_at": "2018-06-30",
+      "question": 2,
+      "author": 3,
+      "text": "From the available biographical evidence, we have every reason to believe that Indiana Jones is a good archaeologist.",
+      "active": true,
+      "best_answer": false
+    }
+  },
+  {
+    "model": "qa.Answer",
+    "pk": 5,
+    "fields": {
+      "added_at": "2018-07-13",
+      "question": 3,
+      "author": 3,
+      "text": "Short answer: yes, they did!",
+      "active": true,
+      "best_answer": false
+    }
+  },
+  {
+    "model": "qa.Answer",
+    "pk": 6,
+    "fields": {
+      "added_at": "2018-07-15",
+      "question": 3,
+      "author": 7,
+      "text": "It is almost certain that the bow and arrow were independently invented in numerous locations and at various times in North America long before Europeans arrived.",
+      "active": true,
+      "best_answer": true
+    }
+  },
+  {
+    "model": "qa.Answer",
+    "pk": 7,
+    "fields": {
+      "added_at": "2018-08-20",
+      "question": 4,
+      "author": 3,
+      "text": "There is indeed evidence of economic decline, but the disintegration of the Mediterranean trade network that fed growth was already collapsing decades before, so 476 was hardly a turning-point for this reason. Instead, the decline of the city’s population was part of a long-term trend, one exacerbated by war and turmoil yes, but one that was not nearly as devastating as the popular imagination portrays it.",
+      "active": true,
+      "best_answer": true
+    }
+  },
+  {
+    "model": "qa.Answer",
+    "pk": 8,
+    "fields": {
+      "added_at": "2018-08-20",
+      "question": 4,
+      "author": 6,
+      "text": "The city itself had changed, but was not abandoned.",
+      "active": true,
+      "best_answer": false
+    }
+  },
+  {
+    "model": "qa.Answer",
+    "pk": 9,
+    "fields": {
+      "added_at": "2018-08-21",
+      "question": 4,
+      "author": 11,
+      "text": "Agreed. Rather than a metropolis, it may instead became a set of villages, held together by a common politics and a continuing ritual of processions across the old classical centre",
+      "active": true,
+      "best_answer": false
+    }
+  },
+  {
+    "model": "qa.Answer",
+    "pk": 10,
+    "fields": {
+      "added_at": "2018-08-23",
+      "question": 5,
+      "author": 4,
+      "text": "Roman soldiers were not allowed to get married - so there weren't any wives at home that had to get that painful letter (for the standard legionaries).",
+      "active": true,
+      "best_answer": false
+    }
+  },
+  {
+    "model": "qa.Answer",
+    "pk": 11,
+    "fields": {
+      "added_at": "2018-08-24",
+      "question": 5,
+      "author": 5,
+      "text": "It's hard to say exactly how they (relatives) were informed - however, it would have fallen to the man's tent group (contubernium) - who would have known about the relatives - to let them know.",
+      "active": true,
+      "best_answer": true
+    }
+  },
+  {
+    "model": "qa.Answer",
+    "pk": 12,
+    "fields": {
+      "added_at": "2018-08-30",
+      "question": 6,
+      "author": 4,
+      "text": "No. To the best of my knowledge no hammer has ever been found in a context suggesting it'd be used as a weapon.",
+      "active": true,
+      "best_answer": true
+    }
+  },
+  {
+    "model": "qa.Answer",
+    "pk": 13,
+    "fields": {
+      "added_at": "2018-09-01",
+      "question": 6,
+      "author": 10,
+      "text": "Hammers were not used as weapons. Thor's own hammer in the Eddas was not used exclusively as a weapon.",
+      "active": true,
+      "best_answer": false
+    }
+  },
+  {
+    "model": "qa.Answer",
+    "pk": 14,
+    "fields": {
+      "added_at": "2018-09-07",
+      "question": 7,
+      "author": 5,
+      "text": "Were they actually sharp? Yes. We know this from multiple sources.",
+      "active": true,
+      "best_answer": false
+    }
+  },
+  {
+    "model": "qa.Answer",
+    "pk": 15,
+    "fields": {
+      "added_at": "2018-09-08",
+      "question": 7,
+      "author": 7,
+      "text": "Swords were often much sharper than required to cut flesh when moving at speed. This allows them to cut flesh more easily, and better cut through bones and cloth. Having enough sharpness to cut through cloth often matters on the battlefield because the enemy is dressed.",
+      "active": true,
+      "best_answer": true
+    }
+  },
+  {
+    "model": "qa.Answer",
+    "pk": 16,
+    "fields": {
+      "added_at": "2018-09-09",
+      "question": 7,
+      "author": 3,
+      "text": "Swords with intact original edges are typically sharp. This can be the case even for swords over 1,000 years old; some Viking swords have been found that are still paper-cutting sharp.",
+      "active": true,
+      "best_answer": false
+    }
+  },
+  {
+    "model": "qa.Answer",
+    "pk": 17,
+    "fields": {
+      "added_at": "2018-10-03",
+      "question": 8,
+      "author": 3,
+      "text": "It's all about the transition from the Ottoman Empire to Turkey. The Ottoman Empire had its capital in Istanbul.  After the Great War Atatürk was concerned about the safety of his national assembly, so he picked a large city centrally located in the Turkish-controlled part of the country and established his parliament there - Ankara.",
+      "active": true,
+      "best_answer": false
+    }
+  },
+  {
+    "model": "qa.Answer",
+    "pk": 18,
+    "fields": {
+      "added_at": "2018-10-04",
+      "question": 8,
+      "author": 7,
+      "text": "It isn't unusual for the capital to be a city that isn't the economically dominant or most populous city. Think of Brasilia, Ottawa, Canberra, Washington D.C., Wellington, amongst others.",
+      "active": true,
+      "best_answer": false
+    }
+  },
+  {
+    "model": "qa.Answer",
+    "pk": 19,
+    "fields": {
+      "added_at": "2018-11-08",
+      "question": 9,
+      "author": 3,
+      "text": "The new Penguin Classics edition (published 2015), translated by Nigel Cliff, is good.",
+      "active": true,
+      "best_answer": false
+    }
+  },
+  {
+    "model": "qa.Answer",
+    "pk": 20,
+    "fields": {
+      "added_at": "2018-11-08",
+      "question": 9,
+      "author": 11,
+      "text": "Yeah, this is a great one!",
+      "active": true,
+      "best_answer": false
+    }
+  },
+    {
+    "model": "qa.Answer",
+    "pk": 21,
+    "fields": {
+      "added_at": "2018-11-08",
+      "question": 10,
+      "author": 11,
+      "text": "Certainly not with the rigor of the modern discipline, but to some extent yes. You mention ancient Assyria, and specifically in ancient Mesopotamia it was often of interest to latter-day Mesopotamians to dig up the cuneiform tablets left from earlier eras and attempt to read these, decipher what they said, and copy them into the writing of the day.",
+      "active": true,
+      "best_answer": false
+    }
+  }
+]

@@ -9,7 +9,7 @@ class QuestionManager(models.Manager):
         return self.order_by('-added_at')
 
     def popular(self, limit=None):
-        return self.order_by('-likes')[:limit] if limit else self.order_by('-likes')
+        return self.order_by('-rating')[:limit] if limit else self.order_by('-rating')
 
 
 class QuestionCategoryManager(models.Manager):
@@ -54,10 +54,10 @@ class Question(models.Model):
     title = models.CharField(blank=False, null=False, max_length=255)
     text = models.TextField()
     added_at = models.DateField(auto_now=True)
-    # edited =
-    rating = models.IntegerField(default=0)  # todo remove this later
+    edited_at = models.DateField(blank=True, null=True)
     author = models.ForeignKey(CustomUser, on_delete=models.SET(value='Deleted'))
-    likes = models.ManyToManyField(CustomUser, related_name='get_likes', default=0)
+    rating = models.IntegerField(default=0, blank=True)
+    likes = models.ManyToManyField(CustomUser, related_name='get_likes', blank=True)
     category = models.ManyToManyField(Category, blank=True)
 
     objects = QuestionManager()

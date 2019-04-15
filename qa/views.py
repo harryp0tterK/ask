@@ -115,11 +115,18 @@ class QuestionLikeRedirect(RedirectView):
         qn = get_object_or_404(Question, id=qn_id)
         url_ = qn.get_url()
         user = self.request.user
+
         if user.is_authenticated:
+
             if user in qn.likes.all():
                 qn.likes.remove(user)
+                qn.rating -= 1
             else:
                 qn.likes.add(user)
+                qn.rating += 1
+
+            qn.save()
+
         return url_
 
 

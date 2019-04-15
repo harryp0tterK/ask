@@ -21,7 +21,7 @@
                                 class="badge badge-secondary">Settled!</span>{% endif %}
                     </div>
                     <div class="col-lg-2">
-                        <a href="">Likes <span class="badge badge-info">{{ question.likes.count }}</span></a>
+                        <a href="">Likes <span class="badge badge-info">{{ question.rating }}</span></a>
                     </div>
                 </div>
             </div>
@@ -50,6 +50,8 @@
 
 </div>
 
+
+{% if questions|length >= 10 %}
 <nav aria-label="Page navigation" class="col-lg-6 offset-lg-3 py-5 d-flex">
     <ul class="pagination mx-auto">
         {% if questions.has_previous %}
@@ -68,5 +70,6 @@
         {% endif %}
     </ul>
 </nav>
+{% endif %}
 
 {% endblock %}

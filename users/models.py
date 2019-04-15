@@ -13,7 +13,7 @@ def avatar_size(avatar):
 
 class CustomUser(AbstractUser):
     age = models.PositiveIntegerField(null=True, blank=True)
-    avatar = models.ImageField(null=True, blank=True, upload_to='avatars/', default='no-image.jpeg',
+    avatar = models.ImageField(null=True, blank=True, upload_to='avatars/', default='no-image.png',
                                validators=[avatar_size])
 
     def save(self, *args, **kwargs):
@@ -21,6 +21,6 @@ class CustomUser(AbstractUser):
 
         if self.pk:
             user = CustomUser.objects.get(pk=self.pk)
-            if user.avatar:
+            if user.avatar and user.avatar.name != 'no-image.png':
                 user.avatar.delete(save=False)
         super(CustomUser, self).save(*args, **kwargs)
