@@ -1,4 +1,4 @@
-from django.http import Http404, HttpResponseRedirect
+from django.http import Http404, HttpResponseRedirect, HttpResponse
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage
 from django.contrib.auth.decorators import login_required
@@ -35,6 +35,12 @@ def home(request, a_id=None):
         cat = get_object_or_404(Category, id=a_id)
         new_questions = cat.question_set.new()
         title = f'Category: {cat.name}'
+
+    if 'search' in request.GET:
+        search_term = request.GET['search']
+        new_questions = new_questions.filter(title__icontains=search_term) | \
+                        new_questions.filter(text__icontains=search_term)
+        title = f'Search results for {search_term}'
 
     # let's create a paginator object
     limit = request.GET.get('limit', 10)
