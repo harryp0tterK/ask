@@ -51,7 +51,7 @@
 </div>
 
 
-{% if questions|length >= 10 %}
+{% if questions.has_other_pages %}
 <nav aria-label="Page navigation" class="col-lg-6 offset-lg-3 py-5 d-flex">
     <ul class="pagination mx-auto">
         {% if questions.has_previous %}
