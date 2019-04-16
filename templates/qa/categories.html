@@ -44,7 +44,7 @@
 
 </div>
 
-{% if categories|length >= 10 %}
+{% if categories.has_other_pages %}
 <nav aria-label="Page navigation" class="col-lg-6 offset-lg-3 py-5 d-flex">
     <ul class="pagination mx-auto">
         {% if categories.has_previous %}
