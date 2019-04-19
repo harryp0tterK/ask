@@ -1,4 +1,4 @@
-from django.http import Http404, HttpResponseRedirect, HttpResponse
+from django.http import Http404, HttpResponseRedirect
 from django.shortcuts import render, redirect, get_object_or_404
 from django.core.paginator import Paginator, EmptyPage
 from django.contrib.auth.decorators import login_required
@@ -236,6 +236,8 @@ def edit(request, obj_type, o_id):
 
 @login_required
 def create_category(request):
+    # with this view we create new category objects, login required
+
     if request.method == 'POST':
         form = CategoryForm(request.POST)
         if form.is_valid():
@@ -249,8 +251,10 @@ def create_category(request):
 
 
 def serve_categories(request):
+    # the view will basically return a list of all categories ordered by id
+
     cat = Category.objects.all().order_by('id')
-    top = Question.objects.popular(5)
+    top = Question.objects.popular(5)  # this is shown on the right widget
 
     title = 'Categories'
     limit = request.GET.get('limit', 10)
