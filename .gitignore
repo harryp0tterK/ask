@@ -12,3 +12,5 @@ temp
 local_settings.py
 media/avatars/
 re_start.sh
+fixtures/
+initial_avatar/
