@@ -275,8 +275,10 @@ def activity(request, auth_id):
     auth = get_object_or_404(CustomUser, id=auth_id)
 
     if request.user.id == auth.id:
+
         my_questions = Question.objects.filter(author=auth)
         my_answers = Answer.objects.filter(author=auth)
+
         my_starred = Question.objects.get_starred(auth)
 
         return render(request, 'qa/activity.html', {'title': f'{auth.username}\'s personal page',
