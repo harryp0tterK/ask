@@ -1,5 +1,5 @@
 from django.http import Http404, HttpResponseRedirect
-from django.shortcuts import render, redirect, get_object_or_404
+from django.shortcuts import render, redirect, get_object_or_404, get_list_or_404
 from django.core.paginator import Paginator, EmptyPage
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
@@ -268,3 +268,20 @@ def serve_categories(request):
                                                   'title': title,
                                                   'top': top,
                                                   'top_categories': Category.objects.popular_categories(), })
+
+
+@login_required
+def activity(request, auth_id):
+    auth = get_object_or_404(CustomUser, id=auth_id)
+
+    if request.user.id == auth.id:
+        my_questions = Question.objects.filter(author=auth)
+        my_answers = Answer.objects.filter(author=auth)
+        my_starred = Question.objects.get_starred(auth)
+
+        return render(request, 'qa/activity.html', {'title': f'{auth.username}\'s personal page',
+                                                    'my_questions': my_questions,
+                                                    'my_answers': my_answers,
+                                                    'my_starred': my_starred})
+    else:
+        return HttpResponseRedirect('/', messages.warning(request, 'Oooups! The Wrong Way!'))

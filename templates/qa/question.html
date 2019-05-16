@@ -67,10 +67,12 @@
                     <div class="col-sm-10">
                             <p><strong> answered on {{ answer.added_at }} by {{ answer.author }}</strong>
                                 {% if answer.best_answer %}&nbsp;
-                                    <a class="badge badge-success" href="{% url 'best_answer' a_id=answer.id %}">Best
-                                        Answer!</a>
+                                    <a class="badge badge-success" href="{% url 'best_answer' a_id=answer.id %}"
+                                       data-toggle="tooltip" data-placement="right"
+                                       title="The Questions's Author Marked This Answer as a Best One">
+                                        Best Answer!</a>
                                 {% else %}
-                                    {% if request.user.id == answer.author.id %}
+                                    {% if request.user.id == answer.question.author.id %}
                                         <a class="badge badge-secondary" href="{% url 'best_answer' a_id=answer.id %}">Upvote</a>
                                     {% endif %}
                                 {% endif %}
