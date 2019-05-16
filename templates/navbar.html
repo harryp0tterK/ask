@@ -29,6 +29,8 @@
                     </a>
                     <div class="dropdown-menu dropdown-menu-right"
                          aria-labelledby="userMenu">
+                        <a class="dropdown-item" style="color: blue"
+                           href="{% url 'activity' auth_id=user.id %}">My activity</a>
                         <a class="dropdown-item"
                            href="{% url 'password_change' %}">Change Password</a>
                         <a class="dropdown-item"

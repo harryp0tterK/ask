@@ -11,6 +11,9 @@ class QuestionManager(models.Manager):
     def popular(self, limit=None):
         return self.order_by('-rating')[:limit] if limit else self.order_by('-rating')
 
+    def get_starred(self, user):
+        return self.filter(likes=user)
+
 
 class QuestionCategoryManager(models.Manager):
     def get_by_natural_key(self, slug):

@@ -1,6 +1,6 @@
 from django.urls import path
 from .views import home, question, ask, delete, edit, create_category, \
-    serve_categories, QuestionLikeRedirect, QAnsweredRedirect
+    serve_categories, QuestionLikeRedirect, QAnsweredRedirect, activity
 
 
 urlpatterns = [
@@ -17,4 +17,5 @@ urlpatterns = [
     path('ask/', ask, name='ask'),
     path('delete/<str:obj_type>/<int:o_id>', delete, name='delete'),
     path('edit/<str:obj_type>/<int:o_id>', edit, name='edit'),
+    path('activity/<int:auth_id>/', activity, name='activity'),
 ]
