@@ -1,4 +1,4 @@
-# [Ask](https://askme.site)
+# askme.site
 
 This is an implementation of a basic Question and Answer platform. It is a very typical 
 [Django](https://www.djangoproject.com/) app, you may use it as a stand-alone 
@@ -9,14 +9,11 @@ here it is, almost ready...
 With this app users can create and log in to account, create/modify questions 
 and answers, it has categories, tags, simple search and more.
 
-Check out the [demo](https://askme.site). Here are credentials in a case you do not
-want to create a new user: 
--  username: Robert
--  password: testuser
+This app is archived now and no longer maintained. 
 
 ## Getting Started
 
-But, to get started with the app, obviously, you will need a general understanding of how Django works. 
+To get started with the app, obviously, you will need a general understanding of how Django works. 
 You will also need to set up environment variables and a database 
 (do not even try SQLite in production, works smoothly with PostgreSQL).
 
@@ -36,12 +33,12 @@ Sorry, there will be no step-by-step manual, I assume you know what you are doin
 
 ## Built With
 
--  [Django](https://www.djangoproject.com/) - The web framework used    
--  [Virtualenv](https://virtualenv.pypa.io/en/latest/)
--  [Gunicorn](https://gunicorn.org/) -  a WSGI HTTP Server
--  [Pillow](https://pillow.readthedocs.io/en/stable/)
+-  [django](https://www.djangoproject.com/) - The web framework used    
+-  [virtualenv](https://virtualenv.pypa.io/en/latest/)
+-  [gunicorn](https://gunicorn.org/) -  a WSGI HTTP Server
+-  [pillow](https://pillow.readthedocs.io/en/stable/)
 -  [crispy-forms](https://django-crispy-forms.readthedocs.io/en/latest/)
--  [Bootstrap 4](https://getbootstrap.com/) - The front end library
+-  [bootstrap 4](https://getbootstrap.com/) - The front end library
 -  [nginx](https://nginx.org/) - a reverse proxy server. 
 
 ## License
