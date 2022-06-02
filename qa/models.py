@@ -56,6 +56,7 @@ class Category(models.Model):
 class Question(models.Model):
     title = models.CharField(blank=False, null=False, max_length=255)
     text = models.TextField()
+    image = models.ImageFiled(null=True, blank=True, upload_to='question/')
     added_at = models.DateField(auto_now=True)
     edited_at = models.DateField(blank=True, null=True)
     author = models.ForeignKey(CustomUser, on_delete=models.SET(value='Deleted'))
