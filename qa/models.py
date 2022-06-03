@@ -4,6 +4,8 @@ from django.utils.text import slugify
 from users.models import CustomUser
 
 
+
+
 class QuestionManager(models.Manager):
     def new(self):
         return self.order_by('-added_at')
@@ -28,7 +30,7 @@ class QuestionCategoryManager(models.Manager):
 
 
 class Category(models.Model):
-    name = models.CharField(max_length=255)
+    name = models.CharField(max_length=25)
     slug = models.SlugField(unique=True)
     description = models.CharField(max_length=255, null=True, blank=True)
 
@@ -52,6 +54,8 @@ class Category(models.Model):
         self.slug = slugify(self.name) + str(self.id)
         super(Category, self).save(*args, **kwargs)
 
+class School(models.Model):
+    name = models.CharField(max_length=25)
 
 class Question(models.Model):
     title = models.CharField(blank=False, null=False, max_length=255)
